@@ -37,7 +37,7 @@ resource "aws_s3_bucket" "public" {
 resource "aws_s3_bucket" "alb_log" {
   bucket = "alb_log-plagmatic-tf-bucket"
 
-  lifecycle {
+  lifecycle_rule {
     enabled = true
 
     expiration {
@@ -56,10 +56,10 @@ data "aws_iam_policy_document" "alb_log" {
     effect    = "Allow"
     actions   = ["s3:PutObject"]
     resources = ["arn:aws:s3:::${aws_s3_bucket.alb_log.id}/*"]
-  }
 
-  principals {
-    type        = "AWS"
-    identifiers = ["582318560864"]
+    principals {
+      type        = "AWS"
+      identifiers = ["582318560864"]
+    }
   }
 }
