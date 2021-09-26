@@ -35,7 +35,7 @@ resource "aws_s3_bucket" "public" {
 }
 
 resource "aws_s3_bucket" "alb_log" {
-  bucket = "alb_log-plagmatic-tf-bucket"
+  bucket = "alb-log-plagmatic-tf-bucket"
 
   lifecycle_rule {
     enabled = true
@@ -47,7 +47,7 @@ resource "aws_s3_bucket" "alb_log" {
 }
 
 resource "aws_s3_bucket_policy" "alb_log" {
-  bucket = aws_s3_bucket.alb_log
+  bucket = "aws_s3_bucket.alb_log"
   policy = data.aws_iam_policy_document.alb_log.json
 }
 
